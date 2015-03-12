@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunnong", "Sunnong\Sunnong.csproj", "{20DF914D-D2CE-4558-B4E4-439AB5E97DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunnong.Tests", "Sunnong.Tests\Sunnong.Tests.csproj", "{03329780-654B-4CEB-A1A6-A6F7222E552E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20DF914D-D2CE-4558-B4E4-439AB5E97DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DF914D-D2CE-4558-B4E4-439AB5E97DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DF914D-D2CE-4558-B4E4-439AB5E97DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DF914D-D2CE-4558-B4E4-439AB5E97DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03329780-654B-4CEB-A1A6-A6F7222E552E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03329780-654B-4CEB-A1A6-A6F7222E552E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03329780-654B-4CEB-A1A6-A6F7222E552E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03329780-654B-4CEB-A1A6-A6F7222E552E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

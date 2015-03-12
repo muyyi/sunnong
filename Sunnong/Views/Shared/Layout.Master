@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<%--<head runat="server">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>--%>
+<head>
+<link rel="stylesheet" type="text/css" href="/Styles/mymune.css" />
+
+<script type="text/javascript"
+src="/Scripts/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("ul#topnav li").hover(function () { //Hover over event on list item
+            $(this).css({ 'background': '#1376c9 url(/content/images/topnav_active.gif) repeat-x' }); //Add background color + image on hovered list item
+            $(this).find("span").show(); //Show the subnav
+        }, function () { //on hover out...
+            $(this).css({ 'background': 'none' }); //Ditch the background
+            $(this).find("span").hide(); //Hide the subnav
+        });
+
+    });
+</script>
+
+</head>
+
+<body>
+    <div class="page">
+    <div id="header">
+      <div id="link">欢迎光临湖南三农网，请[<a href="/security/login">登陆</a>]或[<a href="security/Register">注册</a>]
+        </div>
+        </div>
+         
+     <div id="menu">
+         <ul id="topnav">
+        <li><a href="/home">主页</a></li>
+        <li>
+            <a href="/product">农产品</a>
+            <span>
+                <a href="/product/category/1">农机类</a> |
+                <a href="/product/category/2">农资类</a> |
+                <a href="/product/category/3">种植类</a> |
+                <a href="/product>查看更多</a>
+            </span>
+        </li>
+        <li>
+            <a href="/news">三农资讯</a>
+            <span>
+                <a href="/news/NewsType/1">三农新闻</a> |
+                <a href="/news/NewsType/2">三农财经</a> |
+                <a href="/news/NewsType/3">农业科技</a> |
+                <a href="/news">查看更多</a>
+            </span>
+        </li>
+        <li><a href="/supplier">三农企业</a> </li>
+        <li><a href="#">关于我们</a></li>
+    </ul>
+      </div>
+
+     <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+            <div id="footer">
+            </div>
+        </div>
+
+     <div id="footer">
+        <div style="CLEAR: both"></div>
+        <div class=bottom>关于我们&nbsp;|&nbsp;联系我们&nbsp;|&nbsp;广告服务&nbsp;|&nbsp;人才招聘&nbsp;|&nbsp;爱购社区&nbsp;|&nbsp;商品评价&nbsp; 
+         |&nbsp; 友情链接<BR>川备案编号：0909000011 蜀ICP证00000011号<BR>Copyright©2012-2013 版权所有 
+        </div>
+        </div>
+    </div>
+</body>
+</html>

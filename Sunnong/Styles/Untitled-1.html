@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+#product_main{border:1px solid #dbdbdb;}
+#product_detail{ border:1px solid #dbdbdb; margin-bottom:8px;}
+#product_image{
+	border:1px solid #33FF66;
+	height: 198px;
+	width: 227px;
+	margin-left: 20px;
+	float: left;
+}
+#product_detail1{
+	margin-top: 30px;
+	margin-left: 30px;
+	height: 198px;
+	width: 400px;
+}
+
+#product_detail2{ border:1px solid #dbdbdb; margin-bottom:8px;}
+#product_main span {color:#FF9900}
+-->
+</style>
+</head>
+
+<body>
+<div id="product_main">
+  <div id="product_detail">
+  <h2><span>供应信息</span></h2>
+  <div id="product_image"><img src="/content/images/1.jpg" width="227" height="198"/></div>
+  <div id="product_detail1">
+  <ul>
+  <li><span>商品名称</span>：<%=ViewData["Name"]%></li>
+  <li><span>商品类型</span>：<%=ViewData["Category"]%></li>
+  <li><span>供应商</span>：<a href="/supplier/supplierDetail/<%=ViewData["SupplierID"]%>"> <%=ViewData["Supplier"]%></a></li>
+  <li><span>产地</span>：<%=ViewData["ChangDi"]%></li>
+  </ul>
+  </div>
+  </div>
+
+  <div id="product_detail2">
+  <h2><span>详细说明</span></h2>
+  <br /><%=ViewData["Description"]%>
+  </div>
+  
+
+ </div>
+</body>
+</html>

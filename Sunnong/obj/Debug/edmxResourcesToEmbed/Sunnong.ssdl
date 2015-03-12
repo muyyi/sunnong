@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SunnongModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="SunnongModelStoreContainer">
+    <EntitySet Name="Category" EntityType="SunnongModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comment" EntityType="SunnongModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="News" EntityType="SunnongModel.Store.News" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NewsType" EntityType="SunnongModel.Store.NewsType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product" EntityType="SunnongModel.Store.Product" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Supplier" EntityType="SunnongModel.Store.Supplier" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="SunnongModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="SunnongModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserType" EntityType="SunnongModel.Store.UserType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Comment_News" Association="SunnongModel.Store.FK_Comment_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_NewsType" Association="SunnongModel.Store.FK_News_NewsType">
+      <End Role="NewsType" EntitySet="NewsType" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="SunnongModel.Store.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Supplier" Association="SunnongModel.Store.FK_Product_Supplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="SunnongModel.Store.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NewsID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Comment" Type="text" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NewsTypeID" Type="int" />
+    <Property Name="Title" Type="nchar" MaxLength="100" />
+    <Property Name="Author" Type="int" />
+    <Property Name="NewsContent" Type="text" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="IsDel" Type="bit" />
+  </EntityType>
+  <EntityType Name="NewsType">
+    <Key>
+      <PropertyRef Name="NewsTypeID" />
+    </Key>
+    <Property Name="NewsTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="SupplierID" Type="int" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="ChangDi" Type="nchar" MaxLength="100" />
+    <Property Name="Description" Type="text" />
+    <Property Name="ImageUrl" Type="nchar" MaxLength="100" />
+    <Property Name="IsDel" Type="bit" />
+    <Property Name="Click" Type="int" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="LianXiRen" Type="nchar" MaxLength="100" />
+    <Property Name="Telephone" Type="nchar" MaxLength="100" />
+    <Property Name="DiZhi" Type="nchar" MaxLength="100" />
+    <Property Name="BeiZhu" Type="text" />
+    <Property Name="IsDel" Type="bit" />
+    <Property Name="ImageUrl" Type="nchar" MaxLength="100" />
+    <Property Name="MainCategory" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nchar" MaxLength="100" />
+    <Property Name="Password" Type="nchar" MaxLength="100" />
+    <Property Name="IsDel" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Comment_News">
+    <End Role="News" Type="SunnongModel.Store.News" Multiplicity="0..1" />
+    <End Role="Comment" Type="SunnongModel.Store.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="NewsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_NewsType">
+    <End Role="NewsType" Type="SunnongModel.Store.NewsType" Multiplicity="0..1" />
+    <End Role="News" Type="SunnongModel.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsType">
+        <PropertyRef Name="NewsTypeID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="NewsTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="SunnongModel.Store.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="SunnongModel.Store.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Supplier">
+    <End Role="Supplier" Type="SunnongModel.Store.Supplier" Multiplicity="0..1" />
+    <End Role="Product" Type="SunnongModel.Store.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Role="UserType" Type="SunnongModel.Store.UserType" Multiplicity="1" />
+    <End Role="User" Type="SunnongModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

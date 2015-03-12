@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SunnongModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SunnongEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="SunnongModel.Category" />
+    <EntitySet Name="News" EntityType="SunnongModel.News" />
+    <EntitySet Name="NewsType" EntityType="SunnongModel.NewsType" />
+    <EntitySet Name="Product" EntityType="SunnongModel.Product" />
+    <EntitySet Name="Supplier" EntityType="SunnongModel.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="SunnongModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="SunnongModel.User" />
+    <EntitySet Name="UserType" EntityType="SunnongModel.UserType" />
+    <AssociationSet Name="FK_News_NewsType" Association="SunnongModel.FK_News_NewsType">
+      <End Role="NewsType" EntitySet="NewsType" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="SunnongModel.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="SunnongModel.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Supplier" Association="SunnongModel.FK_Product_Supplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <EntitySet Name="Comment" EntityType="SunnongModel.Comment" />
+    <AssociationSet Name="FK_Comment_News" Association="SunnongModel.FK_Comment_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="SunnongModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Type="Int32" Name="NewsID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="NewsTypeID" />
+    <Property Type="String" Name="Title" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="Author" />
+    <Property Type="String" Name="NewsContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreateDate" />
+    <Property Type="Boolean" Name="IsDel" />
+    <NavigationProperty Name="NewsType" Relationship="SunnongModel.FK_News_NewsType" FromRole="News" ToRole="NewsType" />
+    <NavigationProperty Name="Comment" Relationship="SunnongModel.FK_Comment_News" FromRole="News" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="NewsType">
+    <Key>
+      <PropertyRef Name="NewsTypeID" />
+    </Key>
+    <Property Type="Int32" Name="NewsTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="News" Relationship="SunnongModel.FK_News_NewsType" FromRole="NewsType" ToRole="News" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Type="Int32" Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="CategoryID" />
+    <Property Type="Int32" Name="SupplierID" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="ChangDi" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ImageUrl" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="Boolean" Name="IsDel" />
+    <NavigationProperty Name="Category" Relationship="SunnongModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Supplier" Relationship="SunnongModel.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+    <Property Type="Int32" Name="Click" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Type="Int32" Name="SupplierID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="LianXiRen" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Telephone" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="BeiZhu" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsDel" />
+    <NavigationProperty Name="Product" Relationship="SunnongModel.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+    <Property Type="String" Name="DiZhi" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="ImageUrl" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="MainCategory" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="UserTypeID" Nullable="false" />
+    <Property Type="String" Name="Username" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Password" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="Boolean" Name="IsDel" />
+    <NavigationProperty Name="UserType" Relationship="SunnongModel.FK_User_UserType" FromRole="User" ToRole="UserType" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Type="Int32" Name="UserTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="SunnongModel.FK_User_UserType" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_News_NewsType">
+    <End Type="SunnongModel.NewsType" Role="NewsType" Multiplicity="0..1" />
+    <End Type="SunnongModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsType">
+        <PropertyRef Name="NewsTypeID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="NewsTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Type="SunnongModel.UserType" Role="UserType" Multiplicity="1" />
+    <End Type="SunnongModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Type="SunnongModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="SunnongModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Supplier">
+    <End Type="SunnongModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+    <End Type="SunnongModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Type="Int32" Name="CommentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="NewsID" />
+    <Property Type="Int32" Name="UserID" />
+    <Property Type="String" Name="Comment1" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreateDate" />
+    <NavigationProperty Name="News" Relationship="SunnongModel.FK_Comment_News" FromRole="Comment" ToRole="News" />
+  </EntityType>
+  <Association Name="FK_Comment_News">
+    <End Type="SunnongModel.News" Role="News" Multiplicity="0..1" />
+    <End Type="SunnongModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="NewsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
